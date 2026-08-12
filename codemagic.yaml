@@ -6,12 +6,13 @@ workflows:
     environment:
       java: 17
     scripts:
-      - name: Install Gradle Wrapper (Safety Step)
+      - name: Setup Gradle Wrapper
         script: |
-          curl -LO https://raw.githubusercontent.com/gradle/gradle/master/gradlew
-          chmod +x gradlew
           mkdir -p gradle/wrapper
+          curl -LO https://raw.githubusercontent.com/gradle/gradle/master/gradlew
           curl -L https://raw.githubusercontent.com/gradle/gradle/master/gradle/wrapper/gradle-wrapper.properties > gradle/wrapper/gradle-wrapper.properties
+          curl -L https://raw.githubusercontent.com/gradle/gradle/master/gradle/wrapper/gradle-wrapper.jar > gradle/wrapper/gradle-wrapper.jar
+          chmod +x gradlew
       - name: Build APK
         script: ./gradlew assembleDebug
     artifacts:
