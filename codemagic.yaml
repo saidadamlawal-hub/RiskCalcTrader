@@ -6,9 +6,9 @@ workflows:
     environment:
       java: 17
     scripts:
-      - name: Build APK
+      - name: Build with System Gradle
         script: |
-          chmod +x gradlew
-          ./gradlew assembleDebug
+          # If gradlew fails, use the gradle installed on the build machine
+          gradle assembleDebug
     artifacts:
       - app/build/outputs/apk/debug/app-debug.apk
