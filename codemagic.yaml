@@ -6,14 +6,9 @@ workflows:
     environment:
       java: 17
     scripts:
-      - name: Setup Gradle Wrapper
-        script: |
-          mkdir -p gradle/wrapper
-          curl -LO https://raw.githubusercontent.com/gradle/gradle/master/gradlew
-          curl -L https://raw.githubusercontent.com/gradle/gradle/master/gradle/wrapper/gradle-wrapper.properties > gradle/wrapper/gradle-wrapper.properties
-          curl -L https://raw.githubusercontent.com/gradle/gradle/master/gradle/wrapper/gradle-wrapper.jar > gradle/wrapper/gradle-wrapper.jar
-          chmod +x gradlew
       - name: Build APK
-        script: ./gradlew assembleDebug
+        script: |
+          chmod +x gradlew
+          ./gradlew assembleDebug
     artifacts:
       - app/build/outputs/apk/debug/app-debug.apk
